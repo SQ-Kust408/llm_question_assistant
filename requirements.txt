@@ -1,0 +1,11 @@
+transformers>=4.39.3
+torch>=2.0.1
+peft>=0.4.0
+sentence-transformers>=2.2.2
+faiss-cpu>=1.7.4  # 或 faiss-gpu 根据运行环境选择
+flask>=2.0.3
+lark-oapi>=1.0.0
+numpy>=1.24.3
+tqdm>=4.66.1
+matplotlib>=3.7.1
+python-dotenv>=1.0.0

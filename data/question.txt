@@ -1,0 +1,110 @@
+简单介绍一下大语言模型？
+大语言模型LLMs后面跟的175B、60B、540B等指什么？
+大语言模型LLMs具有什么优点？什么缺点？
+常见的大模型LMs分类有哪些？
+目前主流的LLMs开源模型体系有哪些？
+LLMs中，常用的预训练任务包含哪些，或者说训练目标是什么？
+LLMs中，涌现能力是啥原因？
+什么是scaling law?谈谈你的理解
+什么是大模型幻觉问题？
+为什么会出现大模型幻觉问题？
+如何评估大模型幻觉问题？
+如何环节大模型幻觉问题？
+什么是RAG,它有什么特点？
+RAG技术体系的总体思路？
+介绍一下rag的5个基本流程？
+如何评价rag项目效果的好坏？
+在使用RAG时，有哪些优化策略？
+什么是知识蒸馏？
+为什么要进行知识蒸馏？
+传统的知识蒸馏方法有哪些？
+大语言模型的知识蒸馏方法有哪些？
+什么是prompt engineering?
+什么是prompt engineering的作用？
+如何进行prompt engineering?
+prompt engineering的几个重要原则？
+什么是few-shot learning?
+什么是few-shot learning的作用？
+few-shot learning的几个重要原则？
+什么是zero-shot learning?
+什么是zero-shot learning的作用？
+zero-shot learning的几个重要原则？
+什么是few-shot learning和zero-shot learning的区别？
+few-shot learning和zero-shot learning的几个重要区别？
+few-shot learning和zero-shot learning的几个重要应用场景？
+谈一下对模型量化的了解
+模型压缩和加速的方法有哪些？
+大模型训练的四个关键阶段？
+大语言模型中，微调方法有哪些？
+参数高效微调有哪些方法？
+怎么理解Adapter类的微调？
+怎么理解LoRA类的微调？
+怎么理解P-Tuning类的微调？
+怎么理解Prefix Tuning类的微调？
+怎么理解Prefix Tuning类的微调？
+LORA 权重是否可以合入原模型？
+LORA 微调方法为啥能加速训练？
+Rank 如何选取？
+LoRA 高效微调 如何避免过拟合？
+AdaLoRA的思路是怎么样的
+QLoRA的思路是怎么样的？
+在进行 PEFT操作的时候，基座模型应该选用 Chat 版本还是 Base 版本？
+预训练和微调哪个阶段注入知识的？
+多轮对话任务如何微调模型？
+介绍一下Transformer 的基本结构
+Transformer 的输入部分具体是怎么构成的
+Self-Attention 是怎么执行的
+Self-Attention 结构
+Q, K, V 的计算
+Self-Attention 是怎么执行的
+Multi-Head Attention
+Encoder 结构
+Decoder 结构
+为什么使用教师强制可以并行化？
+Deepseek-R1， 整个学习流程介绍
+DeepSeek-R1 和 DeepSeek-R1-Zero有什么区别
+DeepSeek-R1-Zero如何通过纯强化学习（RL）实现推理能力的突破？
+训练DeepSeek-R1中，为什么要引入数千条样本进行冷启动，他们包含哪些内容？
+冷启动数据怎么构造，为什么需要人工标注和格式过滤，冷启动数据中的“总结”（summary）模块如何提升可读性？
+DeepSeek系列模型的技术创新包含哪些
+DeepSeek MoE 架构的主要结构是怎么样的？
+MoE 中常见的负载不均衡问题是怎么解决的？
+GRPO和PPO分别是什么，他们之间有什么区别？
+多头隐式注意力（Multi-Head Latent Attention，MLA）有什么作用？
+降维映射矩阵和升维映射矩阵是怎么得来的？
+在MLA中，其位置编码有什么特殊性呢？
+Batch Norm和 Layer Norm 有什么区别
+RMS Norm 相比于 Layer Norm 有什么特点？
+Dynamic Tanh (DyT) 是什么，和之前方法相比有哪些优化？
+怎么理解多令牌预测（Multi-Token Prediction，MTP）
+详细介绍一下 DeepSeek-R1 训练过程的四个阶段
+为何在推理任务中强调“规则化奖励”而非神经奖励模型？
+如何避免模型在RL训练中过度拟合评测任务？
+DeepSeek 中蒸馏是怎么实现的？
+为何在蒸馏过程中仅使用SFT而非RL？
+什么是强化学习，用一句话进行总结
+强化学习、监督学习和无监督学习三者有什么区别呢?
+介绍一下强化学习发展历史
+强化学习常见分类是怎么样的？
+谈谈你对马尔可夫决策过程（MDP）的理解
+为什么在马尔可夫奖励过程中需要有折扣因子
+什么是贝尔曼方程，手推下贝尔曼方程
+为什么矩阵形式的贝尔曼方程的解析解比较难求得?
+计算贝尔曼方程的常见方法有哪些，它们有什么区别?
+请分别介绍贝尔曼期望方程和贝尔曼最优方程
+在强化学习习任务中，如果数据流不具备马尔可夫性质应该如何处理？
+能不能手写一下第 n 步的价值函数更新公式？另外，当 n 越来越大时，价值函数的期望和方差分别是变大还是变小呢？
+介绍一下on-policy和off-policy的区别
+策略中随机探索怎么实现
+什么是SARSA，能介绍一下细节么？
+什么是Q-learning，能介绍一下细节么？
+什么是actor-critic，能介绍一下细节么？
+蒙特卡洛方法和时序差分方法是无偏估计吗?另外谁的方差更大呢?为什么?
+在强化学习中，当选择用策略梯度最大化期望奖励时，应该使用什么方法？
+怎么理解策略梯度的公式呢？
+手动推导一下策略梯度公式的计算过程。
+在策略梯度优化中，如果采取每个action的奖励都是正的，只是有大有小，会出现什么问题？
+整个episode里每个(s, a) pair都使用了同一个total reward合适吗？这样公平吗？一场游戏输了那里面的每个step的操作都是失败的吗？一场游戏赢了，中间就不会有失误吗
+REINFORCE 算法的执行过程
+什么是重要性采样，使用重要性采样时需要注意什么问题？
+简述一下PPO算法。其与TRPO算法有何关系呢？

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>智能助手</title>
+    <style>
+        :root {
+            --primary-color: #19c37d;
+            --primary-hover: #16ab6d;
+            --bg-opacity: 0.96;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, var(--bg-opacity)), rgba(255, 255, 255, var(--bg-opacity))),
+                        url('background.jpg') center/cover fixed;
+            position: relative;
+        }
+        /* 其他样式保持不变... */
+
+        /* 输入框和按钮样式 */
+        .input-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        form {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+        }
+        #inputbox {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+        }
+        button[type="button"] {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-header">
+        <h2>智能知识助手</h2>
+        <p>支持 RAG 检索与飞书通知</p>
+    </div>
+    <div class="chatbox" id="chatbox">
+        {% for message in messages %}
+            <div class="message user-message">{{ message.question }}</div>
+            <div class="message assistant-message">{{ message.answer }}</div>
+        {% endfor %}
+    </div>
+    <div class="input-container">
+        <form id="questionForm">
+            <input type="text" id="inputbox" name="question" placeholder="输入你的问题（支持 JVM、Java 基础等提问）" required>
+            <button type="button" onclick="submitQuestion()">发送</button>
+        </form>
+    </div>
+
+    <script>
+        // 修正后的提交逻辑：阻止表单默认提交，使用 AJAX 发送请求
+        function submitQuestion() {
+            const input = document.getElementById('inputbox');
+            const question = input.value.trim();
+            const chatbox = document.getElementById('chatbox');
+            if (!question) return;
+
+            // 添加用户消息（带转义防止 XSS）
+            chatbox.innerHTML += `
+                <div class="message user-message">${escapeHtml(question)}</div>
+                <div class="message assistant-message">思考中...</div>
+            `;
+            input.value = ''; // 清空输入框
+            chatbox.scrollTop = chatbox.scrollHeight; // 滚动到底部
+
+            // 发送 POST 请求（关键修改点 4）
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ question: question }) // 更安全的参数处理方式
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messages = document.querySelectorAll('.assistant-message');
+                const lastMsg = messages[messages.length - 1];
+                if (data.error) {
+                    lastMsg.textContent = `错误：${escapeHtml(data.error)}`;
+                } else {
+                    lastMsg.textContent = escapeHtml(data.answer);
+                }
+                chatbox.scrollTop = chatbox.scrollHeight;
+            })
+            .catch(error => {
+                console.error('请求失败:', error);
+                const lastMsg = document.querySelectorAll('.assistant-message')?.[messages.length - 1];
+                lastMsg.textContent = '系统繁忙，请稍后再试。';
+            });
+        }
+
+        // 严格的 XSS 转义函数（关键修改点 5）
+        function escapeHtml(unsafe) {
+            return unsafe.replace(/[&<"'>]/g, function (match) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[match];
+            });
+        }
+    </script>
+</body>
+</html>
